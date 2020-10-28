@@ -10,6 +10,7 @@ Instructions:
 5. Plug in filing status, 'single' or 'married'
 
 TO DO:
+- [ ] Add other filing statuses
 - [ ] Convert into class/model for Django
 - [X] Unit Tests for calc_fed_tax(filing_status, taxable_income) and net_income_func(taxable_income, fed_tax_yr)
 - [X] Reformat docstrings w/ Google Best Practice Python Docstrings
