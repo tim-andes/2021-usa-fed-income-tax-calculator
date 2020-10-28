@@ -57,7 +57,7 @@ def get_filing_status():
 
 
 def calc_fed_tax(filing_status, taxable_income):
-    """Provides calculated estimate of federal taxes based off of the 2020
+    """Provides calculated estimate of federal taxes based off of the 2021
     tax brackets and the filing statuses 'single' and 'married'.
 
     Args:
@@ -80,7 +80,9 @@ def calc_fed_tax(filing_status, taxable_income):
     Returns: fed_tax_yr, Estimated federal tax on Taxable Income based on
         filing status.
     """
-    rates = [.10, .12, .22, .24, .32, .35, .37]  # 2020 USA Tax Rates
+    
+    # 2021 USA Tax Rates
+    rates = [.10, .12, .22, .24, .32, .35, .37]  
 
     if filing_status == "married":
         brackets = [19900, 81050, 172750, 329850, 418850, 628300]
