@@ -4,12 +4,9 @@ from bisect import bisect
 def get_income():
     """Establish user's Taxable Income for tax expense estimation.
 
-    Input: Users adjusted gross income (AGI) entered as a whole number.
-
-    Note: Error handles any non-int and requests input again. Prints message
-        and loops input again if non-int submitted.
-
-    Returns: taxable_income (int)
+    :input: users adjusted gross income (AGI) entered
+        as a whole number.
+    :returns: taxable_income (int)
     """
     while True:
         try:
@@ -26,10 +23,10 @@ def get_income():
 def print_data(taxable_income, filing_status, fed_tax_yr):
     """Prints to user Taxable Income, Filing Status, estimated Federal Tax.
 
-    Args:
-        taxable_income (int), User input adjusted gross income (AGI)
-        filing_status (str), User input 'single' or 'married'
-        fed_tax_yr (int), Estimated federal tax calculation
+    :param taxable_income: (int) user input adjusted gross income, or AGI
+    :param filing_status: (str) user input 'single' or 'married'
+    :param fed_tax_yr: (int) estimated federal tax calculation
+    :print: AGI, Filing Status, estimated Federal Income tax
     """
     print(f"Annual Gross Income: $ {taxable_income:.2f}"
           f"\nFiling status: {filing_status.title()}"
@@ -40,14 +37,9 @@ def print_data(taxable_income, filing_status, fed_tax_yr):
 def get_filing_status():
     """Establish user's Filing Status for correct tax bracket.
 
-    Input: User enters filing status when prompted. Whole word required.
-
-    Note: Error handles anything not 'single'/'married'; prints message
-        and loops input again if not 'single'/'married'.
-
-    Returns: filing_status.casefold() (str), 'single'/'married' in lowercase.
+    :input: (str) filing status, Single or Married
+    :return: (str) filing_status, in lowercase
     """
-
     filing_status = ""
     while filing_status.casefold() not in ['single', 'married']:
         filing_status = input(
@@ -58,29 +50,12 @@ def get_filing_status():
 
 def calc_fed_tax(filing_status, taxable_income):
     """Provides calculated estimate of federal taxes based off of the 2021
-    tax brackets and the filing statuses 'single' and 'married'.
+    USA tax brackets for filing as Single or Married.
 
-    Args:
-        filing_status (str), User input 'single' or 'married'.
-        taxable_income (int), User input adjusted gross income (AGI).
-
-    Attributes:
-        rates (list): 2020 tax bracket rates.
-        brackets (list): 2020 AGI numbers for 'married' and 'single' statuses.
-        base_tax (list): Tax for the full amount of each tax brackets' AGI
-        i (int): Index value for the bisection insertion point.
-        rate (flt): Identified tax rate for the calculation.
-        bracket (int/flt): Most immediate fully taxed bracket before the
-            bracket where user's AGI lands (active bracket).
-        income_in_bracket (int/flt): Total income in the user's active bracket.
-        tax_in_bracket (flt): Total estimated tax in user's active bracket.
-        fed_tax_yr (flt): Total estimated tax of all brackets.
-
-
-    Returns: fed_tax_yr, Estimated federal tax on Taxable Income based on
-        filing status.
-    """
-    
+    :param filing_status: (str) user input 'single' or 'married'.
+    :param taxable_income: (int) user input adjusted gross income (AGI).
+    :return: fed_tax_yr (flt): total estimated federal taxes
+    """    
     # 2021 USA Tax Rates
     rates = [.10, .12, .22, .24, .32, .35, .37]  
 
@@ -114,21 +89,20 @@ def calc_fed_tax(filing_status, taxable_income):
 def print_net_income_mo(net_income_mo):
     """Prints Yearly Net Income and Monthly Net Income to user.
 
-    Args: net_income_mo, returned from net_income_func(taxable_income,
-        fed_tax_yr); estimated net income after federal taxes.
+    :param inc_net_mo: (flt) monthly net income after estimated federal taxes
+    :print: monthly net income; available income to invest.
     """
     print(f"Your yearly net income is $ {(net_income_mo * 12):.2f}")
     print(f"Your monthly net income is $ {net_income_mo:.2f}")
 
 
 def net_income_func(taxable_income, fed_tax_yr):
-    """Takes income before tax and subtracts estimated federal taxes.
+    """Quick calculation to share with user via print function. User provided
+    income minus estimated federal taxes.
 
-    Args: Taxable income input and federal taxes calculation.
-        taxable_income (int), User input adjusted gross income (AGI).
-        fed_tax_yr (flt), estimated federal taxes based off 2020 tax brackets.
-
-    Returns: net_income_mo, monthly net income after estimated federal taxes.
+    :param taxable_income: (int), user input adjusted gross income (AGI)
+    :param fed_tax_yr: (flt), estimated federal taxes based off 2021 tax rates
+    :return: (flt) inc_net_mo, monthly net income after estimated federal taxes
     """
     net_income_mo = (taxable_income - fed_tax_yr) / 12
     return net_income_mo
