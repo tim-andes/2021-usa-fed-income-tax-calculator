@@ -9,6 +9,9 @@ Instructions:
 4. Plug in Adjust Gross Income (AGI); monies after removing 401k contributions, etc
 5. Plug in filing status, 'single' or 'married'
 
+Sample visualization after income, expenses, and ROI data input (to be released):
+![25 year Return on Investment Adjusted for Inflation](https://github.com/tim-andes/2021-usa-fed-income-tax-calculator/blob/main/25yearROI_Fenix.png)
+
 TO DO:
 - [ ] Add other filing statuses
 - [ ] Convert into class/model for Django
